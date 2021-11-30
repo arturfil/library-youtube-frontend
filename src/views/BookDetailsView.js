@@ -22,7 +22,7 @@ const BookDetailsView = () => {
             <h3>{book.author}</h3>
             <img style={{height: 400}} src={book.image} alt="" />
             <p>
-                {book.genre.map((g, i) => (
+                {book.genre?.map((g, i) => (
                     <>
                         <span key={i}>{g}</span>
                         <br />
