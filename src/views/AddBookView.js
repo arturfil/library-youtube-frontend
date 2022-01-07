@@ -1,17 +1,17 @@
-import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router";
+import { createBook } from "../services/bookService";
 import "./Form.css";
 
 const AddBookView = () => {
-  const apiUrl = process.env.REACT_APP_API_URL;
+  const navigate = useNavigate();
   const [book, setBook] = useState({
     title: "",
     author: "",
     image: "",
     genre: "",
   });
-  const navigate = useNavigate();
+  
 
   const handleChange = (event) => {
       setBook({
@@ -23,7 +23,7 @@ const AddBookView = () => {
   const handleSubmit = async (event) => {
       event.preventDefault();
       book.genre = book.genre.split(",");
-      const response = await axios.post(`${apiUrl}/books/book`, book);
+      const response = await createBook(book);
       navigate('/');
       setBook({
         title: "",

@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import BookCard from '../components/BookCard';
+import { getAllBooks } from "../services/bookService";
 
 const HomeView = () => {
-    const apiUrl = process.env.REACT_APP_API_URL;
     const [books, setBooks] = useState([]);
   
     useEffect(() => {
@@ -11,7 +11,7 @@ const HomeView = () => {
     }, []);
   
     async function getBooks() {
-      const response = await axios.get(`${apiUrl}/books`);
+      const response = await getAllBooks();
       setBooks(response.data);
     }
 
